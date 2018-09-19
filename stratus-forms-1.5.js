@@ -753,6 +753,7 @@ $.fn.StratusFormsTranslate = function (options)
 	                $(element).StratusFormsPeoplePicker();
                     //set value in Person or Group Field
                     if (value.length > 0) {
+ 			                  value = value.replace(/\\\\/g, '\\');	 // will stop future username from having double slashes, does NOT alter existing saved data
                         var people = htmlDecode(value).split(";#");
                         $(element).StratusFormsPeoplePicker({ people: people });
                     }
