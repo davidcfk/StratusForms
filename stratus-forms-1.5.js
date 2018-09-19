@@ -195,7 +195,7 @@ $.fn.StratusFormsTranslate = function (options)
         
                     });
 
-                    $("textarea[data-StratusFormsType='Signature'").each(function () {
+                    $("textarea[data-StratusFormsType='Signature']").each(function () {
                         $(this).after('<canvas style="border:thin black solid;" id="'+$(this).attr("id")+'canvas" width="'+$(this).attr("width")+'" height="'+$(this).attr("height")+'"></canvas>');
                         $('#'+$(this).attr("id")+'canvas').sketch();
                         $(this).hide();
