@@ -860,7 +860,7 @@ $.fn.StratusFormsTranslate = function (options)
              $(this).find(":selected").each(function(i, selected){
                 if(value != "")value += ";#";
 
-                value += $(selected).val(); // This will save VALUE of selected instead
+                value += $(selected).text();
             });
             var encryptField = $(this).hasClass(gStratusFormsEncryptClass);
             var encodedValue = htmlEncode(value, encryptField);
