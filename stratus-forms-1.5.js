@@ -870,13 +870,20 @@ $.fn.StratusFormsTranslate = function (options)
             formVal = $(this).attr("listFieldName");
             if (formVal != undefined) {
 	        	if($(this).hasClass("SFUseLookupID"))
-	        	{
-                	StratusFormsValuePairs.push([$(this).attr("listFieldName"), $(this).val()]);
-	        	}
-	        	else
-	        	{
-                	StratusFormsValuePairs.push([$(this).attr("listFieldName"), CDataWrap(value)]);
-                }
+		        	{
+			        	if ($(this).attr("multiple") != undefined ) {
+				        	// break out the multiple select into the ;# separators (two of them, one for value and a text value)
+				        	if ($(this).val() == null) {
+					        	StratusFormsValuePairs.push([$(this).attr("listFieldName"), ""]);
+				        	} else {
+					        	StratusFormsValuePairs.push([$(this).attr("listFieldName"), $(this).val().join(";#Text;#")]);	// Text is a dummy value - it isn't really required
+				        	}
+			        	} else StratusFormsValuePairs.push([$(this).attr("listFieldName"), $(this).val()]);	
+			        }
+		        	else
+		        	{
+	                	StratusFormsValuePairs.push([$(this).attr("listFieldName"), CDataWrap(value)]);
+	            }
             }
         });
         $(formElement).find("textarea").each(function () {
