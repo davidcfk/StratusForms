@@ -701,9 +701,10 @@ $.fn.StratusFormsTranslate = function (options)
         			 var selectValue = htmlDecode(value);
         			 $(element).StratusFormsLoadDDL ({
 									listName: lookupInfo.listName,	
-                                    webURL: lookupInfo.webURL,
+                  webURL: lookupInfo.webURL,
 									firstOptionText: lookupInfo.firstOption,
-                                    orderByField: lookupInfo.orderByField,
+                  query: lookupInfo.query,
+                  orderByField: lookupInfo.orderByField,
 									fieldName: lookupInfo.fieldName,
 									selValue: selectValue,
 								    completefunc: function(elem,selValue) { 

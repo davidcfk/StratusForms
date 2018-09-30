@@ -27,7 +27,9 @@ $.fn.StratusFormsLoadDropDownList = function (element, curValue, webURL, query, 
     if (query == "") {
         query = "<Query><Where><Neq><FieldRef Name='ID'/><Value Type='Integer'>0</Value></Neq></Where><OrderBy><FieldRef Name='" +
 			orderByField + "'/></OrderBy></Query>";
-    }
+    } else if (orderByField != "") {
+	    query = "<Query><Where>" + query + "</Where><OrderBy><FieldRef Name='" +	orderByField + "'/></OrderBy></Query>";
+    } 
 
     //The Web Service method we are calling, to read list items we use 'GetListItems'
     var method = "GetListItems";
