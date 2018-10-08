@@ -301,7 +301,7 @@
         return this.each(function () {
 
             $($this).empty();
-            $().StratusFormsLoadChildDropDownList(this, curValue, opt.webURL, opt.query, opt.parentID,
+            $().StratusFormsLoadChildDropDownList(this, opt.curValue, opt.webURL, opt.query, opt.parentID,
                 opt.parentField, opt.listName, opt.firstOptionText,
                 opt.fieldName, opt.orderByField, opt.completefunc);
 
