@@ -239,20 +239,25 @@
     }
 
     $.fn.StratusFormsRemoveFile = function (span) {
-        var parent = $(span).parent();
-        var id = $(parent).attr("id")
-        $(parent).find("span").remove();
-        var fileName = $.trim($(parent).text());
-        for (var x = 0; x < gStratusFormsFiles.length; x++) {
-            if (gStratusFormsFiles[x].fileName == fileName) {
-                gStratusFormsFiles.splice(x, 1);
-                break;
-            }
+        if (confirm("Are you sure you wish to delete this file?")) {
+	        var parent = $(span).parent();
+	        var id = $(parent).attr("id")
+	        $(parent).find("span").remove();
+	        var fileName = $.trim($(parent).text());
+	        for (var x = 0; x < gStratusFormsFiles.length; x++) {
+	            if (gStratusFormsFiles[x].fileName == fileName) {
+	                gStratusFormsFiles.splice(x, 1);
+	                break;
+	            }
+	        }
+	        if (id != "0") {
+	            $().StratusFormsDeleteFile($(parent).attr("libraryName"), id);
+	        }
+	        $(parent).remove();
+	    } else {
+            return false;
         }
-        if (id != "0") {
-            $().StratusFormsDeleteFile($(parent).attr("libraryName"), id);
-        }
-        $(parent).remove();
+        
     }
 
     //utility function to load a drop down list with values from a SharePOint List
