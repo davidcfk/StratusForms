@@ -698,7 +698,7 @@ $.fn.StratusFormsUploadFile = function (file, libraryName, id, fieldName) {
 
         var url = webUrl + "/_api/web/lists/getByTitle(@TargetLibrary)/RootFolder/files/add(url=@TargetFileName,overwrite='false')?$expand=ListItemAllFields&" +
             "@TargetLibrary='" + libraryName + "'" +
-            "&@TargetFileName='" + file.name + "'";
+            "&@TargetFileName='" + id + "_" + file.name + "'";
 
         var call = jQuery.ajax({
             url: url,
