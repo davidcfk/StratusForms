@@ -633,15 +633,15 @@
 
     }
 
-
     //iterates over the html form elements and populates with 
     //data read from the SharePoint List
     function PopulateFormData(form, formData, listFields, repeatableRowNum) {
 
         for (var field in formData) {
+            if (field == "") continue;
             elementID = field;
             var element = $(form).find("#" + elementID);
-
+						
             if (repeatableRowNum != null && repeatableRowNum > 0) {
                 elementID = field + "0sfrepeat0" + repeatableRowNum;
                 element = $(form).find("#" + elementID);
@@ -698,7 +698,7 @@
                             if ($(elem).attr("multiple") != undefined) {
                                 $(elem).val(valArray);
                             } else {
-                                $(elem).val(valArray[0]);
+	                            	$(elem).val(valArray[0]);
                             }
 
                         }
@@ -778,11 +778,13 @@
                     var regex = new RegExp("<br>", "g");
                     value = formData[field].replace(regex, "\n");
                 }
-
                 if ($(element).attr("type") == "radio" || $(element).attr("type") == "checkbox") {
-                    $(element).attr("checked", "checked");
-                    if ($(element).attr("type") == "checkbox" && value == 0) {
-                        $(element).removeAttr("checked");
+										console.log(value);
+										if ($(element).attr("type") == "radio" && $(element)[0].value == value) {
+											$(element).attr("checked", "checked");	
+										}
+										if ($(element).attr("type") == "checkbox" && value == 1) {
+                        $(element).attr("checked", "yes");
                     }
                 }
                 else {
@@ -791,7 +793,6 @@
             }
         }
     }
-
 
     //in case your code needs to remove the required fields,
     //this removes the asterisk and the "required" class making
@@ -840,7 +841,9 @@
                                 value = "0";
                             } else {
                                 formVal = undefined;
+                                value = ""; // remove the radio button value - if value doesn't match it won't be selected when reloaded
                             }
+                            formDataObject[id] = value;
                         }
                     }
 
