@@ -779,7 +779,6 @@
                     value = formData[field].replace(regex, "\n");
                 }
                 if ($(element).attr("type") == "radio" || $(element).attr("type") == "checkbox") {
-										console.log(value);
 										if ($(element).attr("type") == "radio" && $(element)[0].value == value) {
 											$(element).attr("checked", "checked");	
 										}
